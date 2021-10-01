@@ -19,3 +19,18 @@
     color: #000;
   }
 }
+
+.users {
+  .completed {
+    background: #b295cf;
+    width: 600px;
+    padding: 10px;
+    margin: 20px 10px;
+  }
+  .notCompleted {
+    background: darkgoldenrod;
+    width: 600px;
+    padding: 10px;
+    margin: 20px 10px;
+  }
+}

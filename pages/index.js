@@ -11,7 +11,7 @@ const Index = ({ students }) => {
           const classes = id % 2 === 0 ? 'dark' : 'light';
           return (
             <div className='student-block worker' key={id}>
-              <Link href={`worker/${id}`}>
+              <Link href={`/worker/${id}`}>
                 <a>
                   <div className={classes}>
                     <p>id: {id}</p>
@@ -51,7 +51,7 @@ export default Index;
 
 const mockFunc = () => Promise.resolve(students);
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
   const data = await mockFunc();
   return {
     props: {
