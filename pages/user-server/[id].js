@@ -1,5 +1,6 @@
 import $axios from 'axios';
 import Link from 'next/link';
+import React from 'react';
 import UserComponent from '../../components/user';
 
 export default function User({ user }) {
@@ -9,7 +10,7 @@ export default function User({ user }) {
       <UserComponent user={user} />
     </>
   );
-};
+}
 
 export const getServerSideProps = async ({ params }) => {
   const { data: user } = await $axios.get(`https://jsonplaceholder.typicode.com/todos/${params.id}`);

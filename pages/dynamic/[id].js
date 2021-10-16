@@ -10,26 +10,26 @@ export default function DynamicComponet({ postData }) {
       />
       <p className='light'>Student: {postData}</p>
     </div>
-  )
+  );
 }
 
 export async function getStaticPaths() {
   const paths = students.map(({id}) => ({
     params: { id: id.toString() }
-  }))
+  }));
   return {
     paths,
     fallback: false
-  }
+  };
 }
 
 const getPostData = (id) => Promise.resolve(id);
 
 export async function getStaticProps({ params }) {
-  const postData = await getPostData(params.id)
+  const postData = await getPostData(params.id);
   return {
     props: {
       postData
     }
-  }
+  };
 }

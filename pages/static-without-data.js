@@ -1,4 +1,7 @@
+/* eslint-disable react/no-unescaped-entities */
 import Head from 'next/head';
+import React from 'react';
+
 const StaticWithoutData = () => {
   return (
     <>
@@ -24,7 +27,7 @@ const StaticWithoutData = () => {
         Templatenets-MacBook-Pro:nextdemo template.net$ yarn dev
       </p>
     </>
-  )
-}
+  );
+};
 
 export default StaticWithoutData;

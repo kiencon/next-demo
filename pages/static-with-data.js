@@ -1,6 +1,7 @@
 import $axios from 'axios';
 import Head from 'next/head';
 import Link from 'next/link';
+import React from 'react';
 import User from '../components/user';
 
 const StaticWithoutData = ({ users }) => {
@@ -26,8 +27,8 @@ const StaticWithoutData = ({ users }) => {
         ))}  
       </div>
     </>
-  )
-}
+  );
+};
 
 export default StaticWithoutData;
 
@@ -37,5 +38,5 @@ export const getStaticProps = async () => {
     props: {
       users: users
     }, // will be passed to the page component as props
-  }
+  };
 };

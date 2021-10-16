@@ -1,3 +1,5 @@
+import React from 'react';
+
 const User = ({ user }) => {
   const classes = user.completed ? 'completed' : 'notCompleted';
   return (
