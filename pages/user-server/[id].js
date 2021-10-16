@@ -11,7 +11,6 @@ export default function User({ user }) {
   );
 };
 
-
 export const getServerSideProps = async ({ params }) => {
   const { data: user } = await $axios.get(`https://jsonplaceholder.typicode.com/todos/${params.id}`);
   return {

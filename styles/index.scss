@@ -1,3 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#main {
+  overflow: hidden;
+}
+
 .worker {
   .dark {
     background-color: darkgoldenrod;
@@ -32,5 +41,34 @@
     width: 600px;
     padding: 10px;
     margin: 20px 10px;
+  }
+}
+
+.header {
+  overflow: overlay;
+  nav {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    ul {
+      padding-left: 0;
+      display: flex;
+      list-style: none;
+      li {
+        padding: 0 10px;
+        white-space: nowrap;
+        a {
+          color: rgb(34, 43, 69);
+          text-decoration: none;
+          padding: 0 5px;
+          font-size: 13px;
+        }
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  &::-webkit-scrollbar {
+    display: none;
   }
 }

@@ -1,6 +1,10 @@
 export default function Student({ postData }) {
   return (
     <div className='student'>
+      <img src='https://images.template.net/20661/Free-Basic-Fashion-Sale-Instagram-Post-Template.jpeg'
+        alt='https://images.template.net/20661/Free-Basic-Fashion-Sale-Instagram-Post-Template.jpeg'
+        title='imgage'
+      />
       <p className='light'>Student: {postData}</p>
     </div>
   )

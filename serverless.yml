@@ -1,0 +1,7 @@
+nextjsDemoApplication:
+  component: "@sls-next/serverless-component@3.4.0"
+  inputs:
+    runtime:
+      defaultLambda: nodejs14.x
+    cloudfront:
+      distributionId: ${env.distributionId}

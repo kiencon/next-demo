@@ -1,61 +1,50 @@
-import Link from 'next/link';
-import students from './api/data';
+import Head from 'next/head';
+import Image from 'next/image';
+import React from 'react';
+import Container from 'react-bootstrap/Container';
+import { getHeaderMenuItems } from '../api';
 
-const Index = ({ students }) => {
+const Header = ({ headerMenuItems }) => (
+  <div className='header'>
+    <nav>
+      <ul>
+        {
+          headerMenuItems?.map(({ name, url }, index) => (
+            <li key={index}>
+              <a href={url}>{name}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+);
+
+const Index = ({ headerMenuItems }) => {
   return (
     <>
-      <h1>Test fallback</h1>
-      <h2>Worker</h2>
-      {
-        students.map(({ id, name, des }) => {
-          const classes = id % 2 === 0 ? 'dark' : 'light';
-          return (
-            <div className='student-block worker' key={id}>
-              <Link href={`/worker/${id}`}>
-                <a>
-                  <div className={classes}>
-                    <p>id: {id}</p>
-                    <p>name: {name}</p>
-                    <p>descripton: {des}</p>
-                  </div>
-                </a>
-              </Link>       
-            </div>
-          )
-        })
-      }
-      <h2>Students:</h2>
-      {
-        students.map(({ id, name, des }) => {
-          const classes = id % 2 === 0 ? 'dark' : 'light';
-          return (
-            <div className='student-block student' key={id}>
-              <Link href={`student/${id}`}>
-                <a>
-                  <div className={classes}>
-                    <p>id: {id}</p>
-                    <p>name: {name}</p>
-                    <p>descripton: {des}</p>
-                  </div>
-                </a>
-              </Link>       
-            </div>
-          )
-        })
-      }
+      <Head>
+        <title>Ngan</title>
+      </Head>
+      {/* <Image src='/ngan.jpeg' alt='my love' title='my love' width='310' height='375' /> */}
+      <Header headerMenuItems={headerMenuItems} />
+      <div id='main-index-content'>
+        <Container>
+          <Image src='/ngan.jpeg' alt='my love' title='my love' width='310' height='375' />
+          <h1>Hello react bootstrap</h1>
+        </Container>
+      </div>
     </>
-  )
-}
+  );
+};
 
 export default Index;
 
-const mockFunc = () => Promise.resolve(students);
-
 export async function getStaticProps() {
-  const data = await mockFunc();
+  const headerMenuItems = await getHeaderMenuItems();
   return {
     props: {
-      students: data
+      headerMenuItems
     }, // will be passed to the page component as props
-  }
+  };
 }

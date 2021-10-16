@@ -24,9 +24,7 @@ const getPostData = params => {
 }
 
 export async function getStaticProps({ params }) {
-  console.log(params)
   const {id, name} = await getPostData(params.slug)
-  console.log('id, name', id, name);
   return {
     props: {
       id, name

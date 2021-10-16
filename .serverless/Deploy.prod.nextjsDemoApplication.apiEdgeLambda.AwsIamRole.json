@@ -1,0 +1,38 @@
+{
+  "name": "q5bxf57-okkcwav",
+  "arn": "arn:aws:iam::231094033201:role/q5bxf57-okkcwav",
+  "service": [
+    "lambda.amazonaws.com",
+    "edgelambda.amazonaws.com"
+  ],
+  "policy": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Resource": "*",
+        "Action": [
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents"
+        ]
+      },
+      {
+        "Effect": "Allow",
+        "Resource": "arn:aws:s3:::q5bxf57-e22vntg/*",
+        "Action": [
+          "s3:GetObject",
+          "s3:PutObject"
+        ]
+      },
+      {
+        "Effect": "Allow",
+        "Resource": "arn:aws:sqs:us-east-1:231094033201:q5bxf57-e22vntg.fifo",
+        "Action": [
+          "sqs:SendMessage"
+        ]
+      }
+    ]
+  },
+  "region": "us-east-1"
+}
