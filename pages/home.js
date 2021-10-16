@@ -4,7 +4,7 @@ import Link from 'next/link';
 import React from 'react';
 import students from './api/data';
 
-const Index = ({ students }) => {
+const Home = ({ students }) => {
   return (
     <>
       <Head>
@@ -37,8 +37,8 @@ const Index = ({ students }) => {
           const classes = id % 2 === 0 ? 'dark' : 'light';
           return (
             <div className='student-block student' key={id}>
-              <Link >
-                <a href={`/student/${id}`}>
+              <Link href={`/student/${id}`} >
+                <a>
                   <div className={classes}>
                     <p>id: {id}</p>
                     <p>name: {name}</p>
@@ -54,7 +54,7 @@ const Index = ({ students }) => {
   );
 };
 
-export default Index;
+export default Home;
 
 const mockFunc = () => Promise.resolve(students);
 
