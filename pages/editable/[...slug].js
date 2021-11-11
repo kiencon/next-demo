@@ -19,27 +19,25 @@ const EditablePage = ({ params, data }) => {
 
 export default EditablePage;
 
-export async function getStaticPaths() {
+export const getStaticPaths = async () => {
   const result = await getEditableConfig();
   const paths = result.map(slug => `/editable/${slug}`)
     .map(path => (
       { params: { slug: [path] }, }
     )).slice(0, 10);
   return {
-    paths,
-    fallback: true,
+    paths: paths,
+    fallback: 'blocking',
   };
-}
+};
 
-export async function getStaticProps({ params }) {
-  console.log(params);
+export const getStaticProps = async ({ params }) => {
   const [ slug ] = params.slug;
   const data = await fetchSubLandingPageSite(slug);
-  console.log('data', data);
   return {
     props: {
-      params: slug,
-      data: data
+      params: slug || '',
+      data: data || []
     }
   };
-}
+};
