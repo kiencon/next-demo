@@ -21,10 +21,9 @@ export default EditablePage;
 
 export const getStaticPaths = async () => {
   const result = await getEditableConfig();
-  const paths = result.map(slug => `/editable/${slug}`)
-    .map(path => (
-      { params: { slug: [path] }, }
-    )).slice(0, 10);
+  const paths = result.map(path => (
+    { params: { slug: [path] }, }
+  )).slice(0, 10);
   return {
     paths: paths,
     fallback: 'blocking',
