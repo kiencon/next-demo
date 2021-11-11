@@ -1,8 +1,8 @@
 import $axios from 'axios';
 let cachedSiteHeaderResult = {};
 
-export const FT_VN_SERVICE = 'https://msapi.template.com';
-export const LIMIT_TEMPLATE = 100;
+export const FT_VN_SERVICE = 'https://msapi.survivalapp.com';
+export const LIMIT_TEMPLATE = 20;
 
 const handleHeaderMenuItemsAPI = res => {
   let results = [];
@@ -65,12 +65,33 @@ export const getEditableUrls = async () => {
   return handleEditableUrlsAPI(res);
 };
 
+const handleSubLandingPageSiteAPI = ({ data, status }) => {
+  if (status === 200 && data?.config) {
+    console.log(data?.config?.productsRelated);
+    return data?.config?.productsRelated || [];
+  }
+
+  return [];
+};
+
 export const fetchSubLandingPageSite = async (query) => {
-  const { data } = await $axios.get(`${FT_VN_SERVICE}/site/landingpage?url=/editable/${query}`);
-  return data;
+  const res = await $axios.get(`https://msapi.survivalapp.com/ft-vn/site/landingpage?url=/editable/${query}`);
+  return handleSubLandingPageSiteAPI(res);
 };
 
 export const searchPageSite = async (query) => {
-  const { data } = await $axios.get(`${FT_VN_SERVICE}/site/searchpage/${query}?page=0&limit=${LIMIT_TEMPLATE}`);
+  const { data } = await $axios.get(`${FT_VN_SERVICE}/ft-vn/site/searchpage/${query}?page=0&limit=${LIMIT_TEMPLATE}`);
   return data;
+};
+
+const handleEditableConfig = ({ status, data }) => {
+  if (status !== 200 || !data?.categories) {
+    return [];
+  }
+  return Object.values(data.categories).map(({ slug }) => slug);
+};
+
+export const getEditableConfig = async () => {
+  const res = await $axios.get(`${FT_VN_SERVICE}/conf/datalayer/getDatalayer`);
+  return handleEditableConfig(res);
 };
